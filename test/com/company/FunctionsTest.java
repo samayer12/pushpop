@@ -2,6 +2,10 @@ package com.company;
 
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class FunctionsTest {
@@ -16,6 +20,14 @@ class FunctionsTest {
 
     @Test
     void isOperator() {
+        List<Character> operators = Arrays.asList('+', '-', '*', '/', '^');
+        for (char operator : operators){
+            assertTrue(Functions.isOperator(operator));
+        }
+    }
+
+    @Test void isNotOperator() {
+        assertFalse(Functions.isOperator('x'));
     }
 
     @Test
