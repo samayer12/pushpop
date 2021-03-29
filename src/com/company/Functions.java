@@ -16,7 +16,7 @@ public class Functions implements ActionListener {
         return false;
     }
 
-    public static String preFix(String expression) {
+    public static String generatePostFix(String expression) {
 
         Stack<String> operand = new Stack<>();
         int length = expression.length();
@@ -45,7 +45,7 @@ public class Functions implements ActionListener {
         }
         return prefixExpression.toString();
     }
-    public static String postFix(String expression) {
+    public static String generatePreFix(String expression) {
 
         Stack<String> operand = new Stack<>();
         int length = expression.length();

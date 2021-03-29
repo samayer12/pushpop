@@ -25,11 +25,11 @@ public class GUI implements ActionListener {
         expField = new JTextField(20);
         expField.setBounds(150, 20, 160, 25);
 
-        preButton = new JButton("Prefix to Postfix");
+        preButton = new JButton("Postfix->Prefix");
         preButton.setBounds(20, 60, 125, 25);
         preButton.addActionListener(this); //prefix function
 
-        postButton = new JButton("Postfix to Prefix");
+        postButton = new JButton("Prefix->PostFix");
         postButton.setBounds(170, 60, 125, 25);
         postButton.addActionListener(this); //postfix function
         JLabel resultLabel = new JLabel("Result");
@@ -54,19 +54,19 @@ public class GUI implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
 
-        if(e.getSource() == preButton) {
+        if(e.getSource() == postButton) {
             String expression = expField.getText();
             if (expression.isEmpty()) {
                 JOptionPane.showMessageDialog(null, "Please enter a value", "Error", JOptionPane.ERROR_MESSAGE);
             }
-            resultField.setText(Functions.postFix(expression));
+            resultField.setText(Functions.generatePostFix(expression));
         }
-        else if (e.getSource() == postButton) {
+        else if (e.getSource() == preButton) {
             String expression = expField.getText();
             if (expression.isEmpty()) {
                 JOptionPane.showMessageDialog(null, "Please enter a value", "Error", JOptionPane.ERROR_MESSAGE);
             }
-            resultField.setText(Functions.preFix(expression));
+            resultField.setText(Functions.generatePreFix(expression));
         }
     }
 }

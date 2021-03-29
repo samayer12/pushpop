@@ -2,7 +2,6 @@ package com.company;
 
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -31,11 +30,16 @@ class FunctionsTest {
     }
 
     @Test
-    void preFix() {
+    void simplePreFix() {
+        String expected = "*+AB-CD";
+
+        assertEquals(expected, Functions.generatePreFix("AB+CD-*"));
     }
 
     @Test
-    void postFix() {
+    void simplePostFix() {
+        String expected = "*+AB-CD";
+        assertEquals(expected, Functions.generatePostFix("AB+CD-*"));
     }
 
     @Test
