@@ -25,18 +25,16 @@ public class Functions implements ActionListener {
 
         try {
             for (int i = 0; i < length; i++) {
-                if (Character.isWhitespace(expression.charAt(i))) {
-                }
-                else if (!isOperator(expression.charAt(i))) {
-                    operand.push(expression.charAt(i) + " ");
-                }
-                else if (isOperator(expression.charAt(i))) {
+                if (isOperator(expression.charAt(i))) {
                     String op1 = operand.peek();
                     operand.pop();
                     String op2 = operand.peek();
                     operand.pop();
                     temp = expression.charAt(i) + op1 + op2;
                     operand.push(temp);
+                }
+                else if (!isOperator(expression.charAt(i)) && !Character.isWhitespace(expression.charAt(i))) {
+                    operand.push(expression.charAt(i) + " ");
                 }
             }
             for (Object i : operand) {
