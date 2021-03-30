@@ -36,8 +36,15 @@ class FunctionsTest {
     }
 
     @Test
-    void simplePostfix(){
-        String expected = "AB+CD-*";
-        assertEquals(expected, Functions.generatePostfix("*+AB-CD"));
+    void intermediatePrefix(){
+        String expected = "*-A/BC-/AKL";
+        assertEquals(expected, Functions.generatePrefix("ABC/-AK/L-*"));
     }
+
+    @Test
+    void intermediatePostfix(){
+        String expected = "ABC/-AK/L-*";
+        assertEquals(expected, Functions.generatePostfix("*-A/BC-/AKL"));
+    }
+
 }

@@ -18,11 +18,9 @@ public class Functions implements ActionListener {
     public static String generatePostfix(String expression) {
         Stack<String> s = new Stack<>();
 
-        // reading from right to left
-        for (int i = expression.length() - 1; i >= 0; i--)
-        {
-            if (isOperator(expression.charAt(i)))
-            {
+        // read from right to left
+        for (int i = expression.length() - 1; i >= 0; i--) {
+            if (isOperator(expression.charAt(i))) {
                 // pop two operands from stack
                 String op1 = s.peek();
                 s.pop();
@@ -33,13 +31,11 @@ public class Functions implements ActionListener {
                 String temp = op1 + op2 + expression.charAt(i);
                 s.push(temp);
             }
-
-            // if symbol is an operand
+            // symbol is an operand
             else {
                 s.push(expression.charAt(i) + "");
             }
         }
-
         return s.peek();
     }
 
@@ -49,9 +45,7 @@ public class Functions implements ActionListener {
 
         // reading from right to left
         for (int i = 0; i < expression.length(); i++) {
-
             if (isOperator(expression.charAt(i))) {
-
                 // pop two operands from stack
                 String op1 = s.peek();
                 s.pop();
@@ -63,16 +57,16 @@ public class Functions implements ActionListener {
                 s.push(temp);
             }
 
-            // if symbol is an operand
+            // symbol is an operand
             else {
                 s.push(expression.charAt(i) + "");
             }
         }
 
-        StringBuilder ans = new StringBuilder();
+        StringBuilder answer = new StringBuilder();
         for (String i : s)
-            ans.append(i);
-        return ans.toString();
+            answer.append(i);
+        return answer.toString();
     }
 
     @Override
