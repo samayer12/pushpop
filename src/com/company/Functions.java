@@ -1,9 +1,8 @@
 package com.company;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.EmptyStackException;
 import java.util.Stack;
-import javax.swing.JOptionPane;
 
 public class Functions implements ActionListener {
 
@@ -16,59 +15,84 @@ public class Functions implements ActionListener {
         return false;
     }
 
-    public static String generatePostFix(String expression) {
-
-        Stack<String> operand = new Stack<>();
-        int length = expression.length();
-        StringBuilder prefixExpression = new StringBuilder();
-        String temp;
-
-        try {
-            for (int i = 0; i < length; i++) {
-                if (isOperator(expression.charAt(i))) {
-                    String op1 = operand.peek();
-                    operand.pop();
-                    String op2 = operand.peek();
-                    operand.pop();
-                    temp = expression.charAt(i) + op1 + op2;
-                    operand.push(temp);
-                }
-                else if (!isOperator(expression.charAt(i)) && !Character.isWhitespace(expression.charAt(i))) {
-                    operand.push(expression.charAt(i) + " ");
-                }
-            }
-            for (Object i : operand) {
-                prefixExpression.append(i);
-            }
-        } catch (EmptyStackException e) {
-            JOptionPane.showMessageDialog(null, "The stack is empty", "Error", JOptionPane.ERROR_MESSAGE);
-        }
-        return prefixExpression.toString();
+    public static String generatePostfix(String expression){
+        return generateInfixToPostfix(generatePreFixToInfix(expression));
     }
-    public static String generatePreFix(String expression) {
 
-        Stack<String> operand = new Stack<>();
-        int length = expression.length();
-        String postfixExpression;
-        String temp;
+    public static String generatePrefix(String expression){
+        return generateInfixToPrefix(generatePostFixToInfix(expression));
+    }
 
-        for(int i = length-1; i >= 0; i--) {
+    public static String generatePostFixToInfix(String expression) {
+
+        Stack<String> s = new Stack<>();
+
+        // reading from right to left
+        for (int i = 0; i < expression.length(); i++) {
+
             if (isOperator(expression.charAt(i))) {
-                String op1 = operand.pop();
-                String op2 = operand.pop();
-                temp = op1 + op2 + expression.charAt(i);
-                operand.push(temp);
+
+                // pop two operands from stack
+                String op1 = s.peek();
+                s.pop();
+                String op2 = s.peek();
+                s.pop();
+
+                // concat the operands and operator
+                String temp = expression.charAt(i) + op2 + op1;
+                s.push(temp);
             }
+
+            // if symbol is an operand
             else {
-                operand.push(String.valueOf(expression.charAt(i)));
+                s.push(expression.charAt(i) + "");
             }
         }
-        postfixExpression = operand.pop();
-        return postfixExpression;
+
+        StringBuilder ans = new StringBuilder();
+        for (String i : s)
+            ans.append(i);
+        return ans.toString();
     }
+    public static String generatePreFixToInfix(String expression) {
+        Stack<String> s = new Stack<>();
+
+        // reading from right to left
+        for (int i = expression.length() - 1; i >= 0; i--)
+        {
+            if (isOperator(expression.charAt(i)))
+            {
+                // pop two operands from stack
+                String op1 = s.peek();
+                s.pop();
+                String op2 = s.peek();
+                s.pop();
+
+                // concat the operands and operator
+                String temp = op1 + op2 + expression.charAt(i);
+                s.push(temp);
+            }
+
+            // if symbol is an operand
+            else {
+                s.push(expression.charAt(i) + "");
+            }
+        }
+
+        return s.peek();
+    }
+
+    public static String generateInfixToPrefix(String expression) {
+        return expression;
+    }
+
+    public static String generateInfixToPostfix(String expression) {
+        return expression;
+    }
+
     @Override
     public void actionPerformed(ActionEvent e) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templateoperand.
     }
 
 }
