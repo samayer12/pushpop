@@ -47,4 +47,15 @@ class FunctionsTest {
         assertEquals(expected, Functions.generatePostfix("*-A/BC-/AKL"));
     }
 
+    @Test
+    void advancedPrefix(){
+        String expected = "* 2 + 2 - + 12 9 2";
+        assertEquals(expected, Functions.generatePrefix("2 2 12 9 + 2 - + *"));
+    }
+
+    @Test
+    void advancedPostfix(){
+        String expected = "2 2 12 9 + 2 - + *";
+        assertEquals(expected, Functions.generatePostfix("* 2 + 2 - + 12 9 2"));
+    }
 }
