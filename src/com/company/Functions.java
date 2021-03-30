@@ -15,15 +15,7 @@ public class Functions implements ActionListener {
         return false;
     }
 
-    public static String generatePostfix(String expression){
-        return generateInfixToPostfix(generatePreFixToInfix(expression));
-    }
-
-    public static String generatePrefix(String expression){
-        return generateInfixToPrefix(generatePostFixToInfix(expression));
-    }
-
-    public static String generatePostFixToInfix(String expression) {
+    public static String generatePostfix(String expression) {
 
         Stack<String> s = new Stack<>();
 
@@ -54,7 +46,7 @@ public class Functions implements ActionListener {
             ans.append(i);
         return ans.toString();
     }
-    public static String generatePreFixToInfix(String expression) {
+    public static String generatePrefix(String expression) {
         Stack<String> s = new Stack<>();
 
         // reading from right to left
@@ -80,14 +72,6 @@ public class Functions implements ActionListener {
         }
 
         return s.peek();
-    }
-
-    public static String generateInfixToPrefix(String expression) {
-        return expression;
-    }
-
-    public static String generateInfixToPostfix(String expression) {
-        return expression;
     }
 
     @Override
