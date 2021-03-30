@@ -30,19 +30,38 @@ class FunctionsTest {
     }
 
     @Test
-    void simplePreFix() {
+    void simplePreFixToInfix() {
         String expected = "*+AB-CD";
-
-        assertEquals(expected, Functions.generatePreFix("AB+CD-*"));
+        assertEquals(expected, Functions.generatePreFixToInfix("(A+B) * (C-D)"));
     }
 
     @Test
-    void simplePostFix() {
-        String expected = "*+AB-CD";
-        assertEquals(expected, Functions.generatePostFix("AB+CD-*"));
+    void simplePostFixToInfix() {
+        String expected = "AB+CD-*";
+        assertEquals(expected, Functions.generatePostFixToInfix("(A+B) * (C-D)"));
     }
 
     @Test
-    void actionPerformed() {
+    void simpleInfixToPostfix(){
+        String expected = "AB+CD-*";
+        assertEquals(expected, Functions.generateInfixToPostfix("(A+B) * (C-D)"));
+    }
+
+    @Test
+    void simpleInfixToPrefix() {
+        String expected = "AB+CD-*";
+        assertEquals(expected, Functions.generateInfixToPrefix("(A+B) * (C-D)"));
+    }
+
+    @Test
+    void simplePrefix(){
+       String expected = "*+AB-CD";
+       assertEquals(expected, Functions.generatePrefix("AB+CD-*"));
+    }
+
+    @Test
+    void simplePostfix(){
+        String expected = "AB+CD-*";
+        assertEquals(expected, Functions.generatePostfix("*+AB-CD"));
     }
 }

@@ -59,14 +59,14 @@ public class GUI implements ActionListener {
             if (expression.isEmpty()) {
                 JOptionPane.showMessageDialog(null, "Please enter a value", "Error", JOptionPane.ERROR_MESSAGE);
             }
-            resultField.setText(Functions.generatePostFix(expression));
+            resultField.setText(Functions.generatePostfix(expression));
         }
         else if (e.getSource() == preButton) {
             String expression = expField.getText();
             if (expression.isEmpty()) {
                 JOptionPane.showMessageDialog(null, "Please enter a value", "Error", JOptionPane.ERROR_MESSAGE);
             }
-            resultField.setText(Functions.generatePreFix(expression));
+            resultField.setText(Functions.generatePrefix(expression));
         }
     }
 }
